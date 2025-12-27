@@ -1,2 +1,19 @@
 # odooxadani-hackathon-2026
-Official repository for Odoo x Adani University Hackathon 2026 virtual round submission.
+
+## Team Details
+
+**Team Name:** Innovex
+
+### Team Leader
+- **Name:** Mayuri Chavan  
+- **Role:** Team Leader & Frontend Developer  
+
+### Team Members
+- **Prerana Bhoi** – Frontend Developer 
+- **Raj Patil** – Backend Developer  
+- **Mayur Badgujar** – Backend Developer   
+
+### Mentor
+- **Name:** Divyesh Vyas  
+- **Role:** Project Mentor  
+
