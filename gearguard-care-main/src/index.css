@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GearGuard Design System - Enterprise-grade maintenance management */
+
+@layer base {
+  :root {
+    /* Neutral palette - slate-based for professional look */
+    --background: 0 0% 100%;
+    --foreground: 220 13% 13%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 13%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 13%;
+
+    /* Primary - deep slate for main actions */
+    --primary: 220 13% 13%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - light gray for secondary UI */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 13% 13%;
+
+    /* Muted - for subtle backgrounds */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    /* Accent - slightly darker than muted */
+    --accent: 220 14% 93%;
+    --accent-foreground: 220 13% 13%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 13% 13%;
+
+    --radius: 0.375rem;
+
+    /* Status colors - semantic */
+    --status-new: 217 91% 60%;
+    --status-new-foreground: 0 0% 100%;
+    --status-in-progress: 45 93% 47%;
+    --status-in-progress-foreground: 0 0% 0%;
+    --status-repaired: 142 71% 45%;
+    --status-repaired-foreground: 0 0% 100%;
+    --status-scrap: 0 84% 60%;
+    --status-scrap-foreground: 0 0% 100%;
+
+    /* Request type colors */
+    --type-preventive: 142 71% 45%;
+    --type-preventive-foreground: 0 0% 100%;
+    --type-corrective: 0 84% 60%;
+    --type-corrective-foreground: 0 0% 100%;
+
+    /* Sidebar */
+    --sidebar-background: 220 13% 13%;
+    --sidebar-foreground: 220 14% 80%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 220 13% 13%;
+    --sidebar-accent: 220 13% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 13% 20%;
+    --sidebar-ring: 217 91% 60%;
+    --sidebar-muted: 220 9% 46%;
+
+    /* Warning color */
+    --warning: 45 93% 47%;
+    --warning-foreground: 0 0% 0%;
+
+    /* Success color */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 220 13% 10%;
+    --foreground: 220 14% 96%;
+
+    --card: 220 13% 13%;
+    --card-foreground: 220 14% 96%;
+
+    --popover: 220 13% 13%;
+    --popover-foreground: 220 14% 96%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 220 13% 13%;
+
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 220 14% 96%;
+
+    --muted: 220 13% 18%;
+    --muted-foreground: 220 9% 56%;
+
+    --accent: 220 13% 20%;
+    --accent-foreground: 220 14% 96%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 20%;
+    --input: 220 13% 20%;
+    --ring: 217 91% 60%;
+
+    --sidebar-background: 220 13% 8%;
+    --sidebar-foreground: 220 14% 80%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 220 13% 13%;
+    --sidebar-accent: 220 13% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 13% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Clean focus states */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer components {
+  /* Status badge variants */
+  .badge-new {
+    @apply bg-status-new text-status-new-foreground;
+  }
+
+  .badge-in-progress {
+    @apply bg-status-in-progress text-status-in-progress-foreground;
+  }
+
+  .badge-repaired {
+    @apply bg-status-repaired text-status-repaired-foreground;
+  }
+
+  .badge-scrap {
+    @apply bg-status-scrap text-status-scrap-foreground;
+  }
+
+  .badge-preventive {
+    @apply bg-type-preventive text-type-preventive-foreground;
+  }
+
+  .badge-corrective {
+    @apply bg-type-corrective text-type-corrective-foreground;
+  }
+
+  /* Table styles */
+  .data-table {
+    @apply w-full text-sm;
+  }
+
+  .data-table th {
+    @apply text-left font-medium text-muted-foreground px-4 py-3 border-b;
+  }
+
+  .data-table td {
+    @apply px-4 py-3 border-b;
+  }
+
+  .data-table tr:hover {
+    @apply bg-muted/50;
+  }
+
+  /* Sidebar active state */
+  .sidebar-link-active {
+    @apply bg-sidebar-accent text-sidebar-accent-foreground;
+  }
+
+  /* FullCalendar overrides */
+  .fc {
+    @apply font-sans;
+  }
+
+  .fc .fc-toolbar-title {
+    @apply text-lg font-semibold text-foreground;
+  }
+
+  .fc .fc-button {
+    @apply bg-secondary text-secondary-foreground border-border hover:bg-accent;
+  }
+
+  .fc .fc-button-primary:not(:disabled).fc-button-active,
+  .fc .fc-button-primary:not(:disabled):active {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .fc .fc-daygrid-day-number {
+    @apply text-foreground;
+  }
+
+  .fc .fc-col-header-cell-cushion {
+    @apply text-muted-foreground font-medium;
+  }
+
+  .fc-theme-standard td,
+  .fc-theme-standard th {
+    @apply border-border;
+  }
+
+  .fc .fc-daygrid-day.fc-day-today {
+    @apply bg-accent/50;
+  }
+
+  .fc-event {
+    @apply cursor-pointer;
+  }
+}
+
+@layer utilities {
+  /* Scrollbar styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground) / 0.5);
+  }
+}
