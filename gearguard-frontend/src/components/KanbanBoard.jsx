@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { DragDropContext } from "@hello-pangea/dnd";
 import KanbanColumn from "./KanbanColumn";
 import CreateRequestModal from "./CreateRequestModal";
-import { mockRequests } from "../mockData";
 import { USE_MOCK_API } from "../config";
 import { api } from "../api";
+import { mockRequests } from "../mockData";
 
 const STATUSES = ["NEW", "IN_PROGRESS", "REPAIRED", "SCRAP"];
 
@@ -23,13 +23,25 @@ export default function KanbanBoard() {
   const onDragEnd = (result) => {
     if (!result.destination) return;
 
-    setRequests(prev =>
-      prev.map(r =>
-        String(r.id) === result.draggableId
-          ? { ...r, status: result.destination.droppableId }
-          : r
-      )
-    );
+    const requestId = result.draggableId;
+    const newStatus = result.destination.droppableId;
+
+    if (USE_MOCK_API) {
+      setRequests(prev =>
+        prev.map(r =>
+          String(r.id) === requestId ? { ...r, status: newStatus } : r
+        )
+      );
+    } else {
+      api.patch(`/requests/${requestId}/status/`, { status: newStatus })
+        .then(() => {
+          setRequests(prev =>
+            prev.map(r =>
+              String(r.id) === requestId ? { ...r, status: newStatus } : r
+            )
+          );
+        });
+    }
   };
 
   return (
@@ -45,12 +57,12 @@ export default function KanbanBoard() {
       </div>
 
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           {STATUSES.map(status => (
             <KanbanColumn
               key={status}
               status={status}
-              requests={requests.filter(r => r.status === status)}
+              requests={Array.isArray(requests) ? requests.filter(r => r.status === status) : []}
             />
           ))}
         </div>
@@ -59,18 +71,7 @@ export default function KanbanBoard() {
       {showModal && (
         <CreateRequestModal
           onClose={() => setShowModal(false)}
-          onCreate={(data) => {
-            setRequests(prev => [
-              ...prev,
-              {
-                id: Date.now(),
-                subject: data.subject || "New Request",
-                status: "NEW",
-                equipment_name: "Unknown",
-              },
-            ]);
-            setShowModal(false);
-          }}
+          onCreated={(newRequest) => setRequests(prev => [...prev, newRequest])}
         />
       )}
     </div>
