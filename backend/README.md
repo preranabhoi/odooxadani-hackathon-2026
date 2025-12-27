@@ -203,7 +203,7 @@ When request status changes to SCRAP, equipment's `is_usable` flag is set to `fa
 ### 5. Calendar Integration
 Preventive maintenance requests are available via `/api/calendar/` endpoint with calculated end times.
 
-## Notes for Hackathon
+## Notes 
 
 - CORS is wide open for easy frontend integration
 - Authentication is disabled for speed (enable in production)
